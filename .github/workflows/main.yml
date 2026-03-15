@@ -1,0 +1,22 @@
+name: Lempar File Ke PHP
+
+on:
+  push:
+    branches:
+      - main  # Ganti dengan nama branch utama Anda (misal: 'master' atau 'main')
+
+jobs:
+  web-deploy:
+    name: 🎉 Kelempar!
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Ambil Code Terbaru
+      uses: actions/checkout@v4 # Mengambil kode terbaru dari repo
+
+    - name: 📂 Nyatuin Berkas
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Menggunakan action FTP deploy
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ./pmr.likesyou.org/  # Ganti dengan folder tujuan di hosting Anda
